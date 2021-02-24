@@ -1,4 +1,5 @@
 from LinkedList import LinkedList
+from datetime import date
 
 class HashTable:
 
@@ -14,13 +15,13 @@ class HashTable:
 
   def create_arr(self, size):
      
-    arr = []
+    array = []
 
     for i in range(size):
-        new_ll = LinkedList()
-        arr.append(new_ll)
+        new_linked_list = LinkedList()
+        array.append(new_linked_list)
 
-    return arr
+    return array
 
 
 
@@ -30,10 +31,18 @@ class HashTable:
   # Hash functions are a function that turns each of these keys into an index value that we can use to decide where in our list each key:value pair should be stored. 
 
   def hash_func(self, key):
-    # YO make sure to make my own. Instead of using len of word to find index do something else...
-    key_length = len(key)
+    # Takes the number of the current day and either divides it by the word length or gets divided by the word length
+    # depending on which number is greater
+    today = date.today()
+    day_number = int(today.strftime('%d'))
+    word_length = len(key)
 
-    index = key_length % self.size
+    if day_number > word_length:
+      x = day_number / word_length
+    else:
+      x = word_length / day_number
+
+    index = int(x) % self.size
 
     return index
 
@@ -45,21 +54,20 @@ class HashTable:
   def insert(self, key, value):
     new_data = (key, value)
 
-    # hash
     array_index = self.hash_func(key)
 
-    ll = self.arr(array_index)
+    linked_list = self.arr[array_index]
 
-    # Only append if this key is not in table
+    # Only append if this key is not in table.
     # If not found, append
-    ll_index = ll.find(key)
+    ll_index = linked_list.find(key)
     if ll_index == -1:
-        ll.append(new_data)
-    else:
-        ll.update(key, value)
-
+        linked_list.append(new_data)
     # Otherwise, if this word is already in the table,
     # don't create a new node, just update the value
+    else:
+        linked_list.update(key, value)
+
 
 
   # 4️⃣ TODO: Complete the print_key_values method.
