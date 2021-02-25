@@ -1,5 +1,4 @@
 from Node import Node
-# Fix indents
 
 class LinkedList:
 
