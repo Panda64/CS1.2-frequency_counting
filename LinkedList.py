@@ -49,25 +49,19 @@ class LinkedList:
 
   def print_nodes(self):
     current = self.head
-    
-    if current == None:
-        # Change this too. Don't print if empty
-      print('The linked list is empty.')
-    else:
-      for i in range(self.length()):
-          # Change below
-        print(f'Node {i}: {current.data}')
-        current = current.next
+  
+    for i in range(self.length()):
+      print(f'{current.data[0]}: {current.data[1]}')
+      current = current.next
 
-  def update(self, value):
-      # Fix this method
-      current_node = self.head
+  def update(self, key):
+      current = self.head
 
       found = False
-      counter = 0
 
       while current != None and not found:
           if current.data[0] == key:
               current.data = (current.data[0], current.data[1]+1)
+              found = True
           else:
               current = current.next

@@ -66,7 +66,7 @@ class HashTable:
     # Otherwise, if this word is already in the table,
     # don't create a new node, just update the value
     else:
-        linked_list.update(key, value)
+       linked_list.update(key)
 
 
 
